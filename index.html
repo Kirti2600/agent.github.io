@@ -161,4 +161,71 @@
       <div class="links">
         <a href="#" aria-disabled="true">About</a>
         <a href="#" aria-disabled="true">Advertising</a>
-        <a href="#" aria-disabled="
+        <a href="#" aria-disabled="true">Business</a>
+        <a href="#" aria-disabled="true">How Search works</a>
+      </div>
+      <div class="links">
+        <a href="#" aria-disabled="true">Privacy</a>
+        <a href="#" aria-disabled="true">Terms</a>
+        <a href="#" aria-disabled="true">Settings</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Small UX niceties
+    const mainInput = document.querySelector('.search input[name="q"]');
+    const searchForm = document.getElementById('search-form');
+    const luckyForm = document.getElementById('lucky-form');
+
+    // Mirror query into hidden forms so both buttons submit correctly
+    function syncHiddenForms() {
+      for (const f of [searchForm, luckyForm]) {
+        f.querySelector('input[name="q"]').value = mainInput.value;
+      }
+    }
+    mainInput.addEventListener('input', syncHiddenForms);
+    syncHiddenForms();
+
+    // Focus with "/" like many apps
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== mainInput) {
+        e.preventDefault();
+        mainInput.focus();
+      }
+    });
+  </script>
+
+  <style>
+    /* Accessible hidden text helper */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; border: 0; padding: 0; margin: -1px;
+    }
+  </style>
+
+
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DgL000007GRUr',
+				'Github_Messaging_Setting',
+				'https://orgfarm-b5911c962c-dev-ed.develop.my.site.com/ESWGithubMessagingSetti1755773193659',
+				{
+					scrt2URL: 'https://orgfarm-b5911c962c-dev-ed.develop.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://orgfarm-b5911c962c-dev-ed.develop.my.site.com/ESWGithubMessagingSetti1755773193659/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+</body>
+</html>
