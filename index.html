@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search</title>
+  <meta name="description" content="Simple search homepage replica" />
+  <style>
+    :root {
+      --fg: #202124;
+      --subtle: #5f6368;
+      --bg: #fff;
+      --input-bg: #fff;
+      --border: #dadce0;
+      --hover: rgba(60,64,67,.08);
+      --focus: #1a73e8;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .page {
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    header, footer {
+      padding: 12px 16px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: flex-end;
+      color: var(--subtle);
+      font-size: 0.95rem;
+    }
+    header a, footer a {
+      text-decoration: none;
+      color: inherit;
+      padding: 6px 8px;
+      border-radius: 8px;
+    }
+    header a:hover, footer a:hover { background: var(--hover); }
+    main {
+      display: grid;
+      place-items: center;
+      padding: 24px 16px 64px;
+    }
+    .center {
+      width: min(92vw, 640px);
+      text-align: center;
+    }
+    .logo {
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 60px 0 24px;
+      user-select: none;
+    }
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .search:focus-within {
+      border-color: var(--focus);
+      box-shadow: 0 1px 3px rgba(26,115,232,.25), 0 1px 8px rgba(26,115,232,.12);
+    }
+    .search input[type="text"] {
+      flex: 1;
+      border: 0;
+      outline: none;
+      font-size: 1.05rem;
+      background: transparent;
+      padding: 6px 0;
+    }
+    .buttons {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: #f8f9fa;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: .95rem;
+      cursor: pointer;
+    }
+    .btn:hover { border-color: #c6c6c6; }
+    .hint {
+      margin-top: 14px;
+      color: var(--subtle);
+      font-size: .9rem;
+    }
+    footer {
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .links {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header aria-label="Top navigation">
+      <a href="https://mail.google.com/" rel="nofollow noopener">Gmail</a>
+      <a href="https://www.google.com/imghp" rel="nofollow noopener">Images</a>
+      <a href="#" aria-disabled="true" style="opacity:.5; pointer-events:none;">Apps</a>
+      <a href="#" aria-disabled="true" style="opacity:.5; pointer-events:none;">Sign in</a>
+    </header>
+
+    <main>
+      <div class="center">
+        <div class="logo" aria-label="Logo">Search</div>
+
+        <!-- Search form that submits to Google -->
+        <form class="search" role="search" aria-label="Search the web" action="https://www.google.com/search" method="get">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24">
+            <path d="M21.53 20.47l-4.77-4.77a8 8 0 10-1.06 1.06l4.77 4.77a.75.75 0 101.06-1.06zM4.5 10a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z"/>
+          </svg>
+          <label for="q" class="visually-hidden">Search query</label>
+          <input id="q" name="q" type="text" autocomplete="off" spellcheck="false" placeholder="Search…" aria-label="Search" />
+          <input type="hidden" name="hl" value="en" />
+        </form>
+
+        <div class="buttons">
+          <button class="btn" type="submit" form="lucky-form">I’m Feeling Lucky</button>
+          <button class="btn" type="submit" form="search-form">Google Search</button>
+        </div>
+
+        <!-- Hidden forms so the buttons above work -->
+        <form id="search-form" action="https://www.google.com/search" method="get">
+          <input name="q" type="hidden" />
+          <input name="hl" type="hidden" value="en" />
+        </form>
+        <form id="lucky-form" action="https://www.google.com/search" method="get">
+          <input name="q" type="hidden" />
+          <input name="btnI" type="hidden" value="I" />
+          <input name="hl" type="hidden" value="en" />
+        </form>
+
+        <p class="hint">Tip: press <kbd>/</kbd> to focus the search box.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="links">
+        <a href="#" aria-disabled="true">About</a>
+        <a href="#" aria-disabled="true">Advertising</a>
+        <a href="#" aria-disabled="
